@@ -65,6 +65,10 @@ const char *creq_response_header_get(const CReqResponse *response, const char *n
  * se não existir. Ponteiro interno — não libere. */
 const char *creq_response_cookie_get(const CReqResponse *response, const char *name);
 
+/* Converte o corpo da resposta em um objeto json */
+static inline cJSON* creq_response_body_to_json(const CReqResponse* response)
+    { return cJSON_ParseWithLength(response->body, response->body_length);  }
+
 #ifdef __cplusplus
 }
 #endif
