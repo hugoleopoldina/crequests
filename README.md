@@ -191,6 +191,31 @@ creq_session_clear_cookies(session); /* ex: simular logout */
 creq_session_free(session);
 ```
 
+### Persistir Sessão
+```c
+CReqSession *session = creq_session_create();
+CReqRequest *req = creq_request_create(CREQ_METHOD_POST, "https://api.myapp.com/login");
+
+/* Criar e definir o corpo da solicitação em JSON */
+cJSON* body = cJSON_CreateObject();
+cJSON_AddStringToObject(body, "username", "myusername");
+cJSON_AddStringToObject(body, "password", "mypassword");
+
+/* Essa chamada libera o objeto body
+   e define o header `Content-Type` para `application/json` */
+creq_request_set_json_body(req, body);
+
+CReqResponse* resp = creq_perform(session, req);
+
+/* Cookies definidos em session
+   permitindo continuar a sessão em outras chamadas creq_perform(...) */
+
+creq_session_free(session);
+creq_response_free(resp);
+creq_request_free(req);
+/* 
+```
+
 ### Parser (`parser.h`)
 
 Uso normal (via `creq_perform`) não exige tocar no parser diretamente,
