@@ -130,6 +130,7 @@ cookies).
 ### Requisição customizada: headers, cookies, parâmetros de query
 
 ```c
+CReqSession *session = creq_session_create();
 CReqRequest *req = creq_request_create(CREQ_METHOD_GET, "https://api.exemplo.com/busca");
 
 creq_header_set(req, "Authorization", "Bearer token123");
@@ -142,6 +143,7 @@ CReqResponse *resp = creq_perform(session, req); /* função "mestre" */
 creq_request_free(req);
 /* ... use resp ... */
 creq_response_free(resp);
+creq_session_free(session);
 ```
 
 Funções análogas existem para leitura/remoção
