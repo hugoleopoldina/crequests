@@ -59,7 +59,7 @@ baixados automaticamente via `FetchContent` — não precisa instalá-los
 à parte.
 
 ```bash
-git clone <url-do-repositorio> crequests
+git clone https://github.com/hugoleopoldina/crequests.git
 cd crequests
 cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
 cmake --build build
